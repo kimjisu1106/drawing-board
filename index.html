@@ -8,86 +8,92 @@
     <title>Drawing Boards</title>
   </head>
   <body>
-    <canvas></canvas>
-    <input
-      id="line-width"
-      type="range"
-      step="2"
-      min="1"
-      max="9"
-      list="tickmarks"
-    />
-    <datalist id="tickmarks">
-      <option value="1"></option>
-      <option value="3" class="value"></option>
-      <option value="5" class="value"></option>
-      <option value="7" class="value"></option>
-      <option value="9" class="value"></option>
-    </datalist>
-    <input id="color" type="color" />
-    <section class="palette">
-      <div
-        class="color-option"
-        style="background-color: #1abc9c"
-        data-color="#1abc9c"
-      ></div>
-      <div
-        class="color-option"
-        style="background-color: #3498db"
-        data-color="#3498db"
-      ></div>
-      <div
-        class="color-option"
-        style="background-color: #34495e"
-        data-color="#34495e"
-      ></div>
-      <div
-        class="color-option"
-        style="background-color: #27ae60"
-        data-color="#27ae60"
-      ></div>
-      <div
-        class="color-option"
-        style="background-color: #8e44ad"
-        data-color="#8e44ad"
-      ></div>
-      <div
-        class="color-option"
-        style="background-color: #f1c40f"
-        data-color="#f1c40f"
-      ></div>
-      <div
-        class="color-option"
-        style="background-color: #e74c3c"
-        data-color="#e74c3c"
-      ></div>
-      <div
-        class="color-option"
-        style="background-color: #95a5a6"
-        data-color="#95a5a6"
-      ></div>
-      <div
-        class="color-option"
-        style="background-color: #d35400"
-        data-color="#d35400"
-      ></div>
-      <div
-        class="color-option"
-        style="background-color: #bdc3c7"
-        data-color="#bdc3c7"
-      ></div>
-      <div
-        class="color-option"
-        style="background-color: #2ecc71"
-        data-color="#2ecc71"
-      ></div>
-      <div
-        class="color-option"
-        style="background-color: #e67e22"
-        data-color="#e67e22"
-      ></div>
-    </section>
-
+    <header class="tools">
+      <section class="buttons">
+        <button id="draw-btn" class="on-btn">그리기</button>
+        <button id="fill-btn">채우기</button>
+        <div>
+          <input
+            id="line-width"
+            type="range"
+            step="3"
+            value="1"
+            min="1"
+            max="100"
+          />
+        </div>
+        <button id="destroy-btn">처음으로</button>
+        <button id="eraser-btn">지우기</button>
+        <input type="file" accept="image/*" id="file" />
+        <input type="text" placeholder="입력 후 더블클릭!" id="text" />
+      </section>
+      <section class="palette">
+        <input id="color" type="color" />
+        <div
+          class="color-option"
+          style="background-color: #1abc9c"
+          data-color="#1abc9c"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #3498db"
+          data-color="#3498db"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #34495e"
+          data-color="#34495e"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #27ae60"
+          data-color="#27ae60"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #8e44ad"
+          data-color="#8e44ad"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #f1c40f"
+          data-color="#f1c40f"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #e74c3c"
+          data-color="#e74c3c"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #95a5a6"
+          data-color="#95a5a6"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #d35400"
+          data-color="#d35400"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #bdc3c7"
+          data-color="#bdc3c7"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #2ecc71"
+          data-color="#2ecc71"
+        ></div>
+        <div
+          class="color-option"
+          style="background-color: #e67e22"
+          data-color="#e67e22"
+        ></div>
+      </section>
+    </header>
+    <main id="main">
+      <canvas></canvas>
+    </main>
     <script src="app.js"></script>
   </body>
 </html>
