@@ -12,3 +12,13 @@ canvas {
   height: 800px;
   border: 5px solid black;
 }
+
+.palette {
+  display: flex;
+}
+
+.color-option {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
