@@ -4,96 +4,122 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Drawing Boards</title>
   </head>
   <body>
-    <header class="tools">
-      <section class="buttons">
-        <button id="draw-btn" class="on-btn">그리기</button>
-        <button id="fill-btn">채우기</button>
-        <div>
-          <input
-            id="line-width"
-            type="range"
-            step="3"
-            value="1"
-            min="1"
-            max="100"
-          />
-        </div>
-        <button id="destroy-btn">처음으로</button>
-        <button id="eraser-btn">지우기</button>
-        <input type="file" accept="image/*" id="file" />
-        <input type="text" placeholder="입력 후 더블클릭!" id="text" />
-      </section>
-      <section class="palette">
-        <input id="color" type="color" />
-        <div
-          class="color-option"
-          style="background-color: #1abc9c"
-          data-color="#1abc9c"
-        ></div>
-        <div
-          class="color-option"
-          style="background-color: #3498db"
-          data-color="#3498db"
-        ></div>
-        <div
-          class="color-option"
-          style="background-color: #34495e"
-          data-color="#34495e"
-        ></div>
-        <div
-          class="color-option"
-          style="background-color: #27ae60"
-          data-color="#27ae60"
-        ></div>
-        <div
-          class="color-option"
-          style="background-color: #8e44ad"
-          data-color="#8e44ad"
-        ></div>
-        <div
-          class="color-option"
-          style="background-color: #f1c40f"
-          data-color="#f1c40f"
-        ></div>
-        <div
-          class="color-option"
-          style="background-color: #e74c3c"
-          data-color="#e74c3c"
-        ></div>
-        <div
-          class="color-option"
-          style="background-color: #95a5a6"
-          data-color="#95a5a6"
-        ></div>
-        <div
-          class="color-option"
-          style="background-color: #d35400"
-          data-color="#d35400"
-        ></div>
-        <div
-          class="color-option"
-          style="background-color: #bdc3c7"
-          data-color="#bdc3c7"
-        ></div>
-        <div
-          class="color-option"
-          style="background-color: #2ecc71"
-          data-color="#2ecc71"
-        ></div>
-        <div
-          class="color-option"
-          style="background-color: #e67e22"
-          data-color="#e67e22"
-        ></div>
-      </section>
-    </header>
-    <main id="main">
+    <section class="tools">
+      <div class="draw-btn">
+        <button id="draw-btn" class="on-btn">
+          <i class="fas fa-paint-brush"></i>
+        </button>
+        <input
+          id="line-width"
+          type="range"
+          step="3"
+          value="1"
+          min="1"
+          max="100"
+          class="hidden"
+        />
+      </div>
+      <button id="fill-btn">
+        <i class="fas fa-fill-drip"></i>
+      </button>
+      <button id="destroy-btn">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+      <button id="eraser-btn">
+        <i class="fas fa-eraser"></i>
+      </button>
+      <button id="save">
+        <i class="fas fa-file-download"></i>
+      </button>
+      <label for="file">
+        <i class="fas fa-images"></i>
+      </label>
+      <input
+        id="file"
+        name="file"
+        type="file"
+        accept="image/*"
+        style="opacity: 0"
+      />
+      <label for="text">
+        <i class="fas fa-font"></i>
+      </label>
+      <input type="text" placeholder="입력 후 더블클릭!" id="text" />
+    </section>
+    <section>
       <canvas></canvas>
-    </main>
+    </section>
+    <section class="palette">
+      <input id="color" type="color" />
+      <div
+        class="color-option"
+        style="background-color: #1abc9c"
+        data-color="#1abc9c"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #3498db"
+        data-color="#3498db"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #34495e"
+        data-color="#34495e"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #27ae60"
+        data-color="#27ae60"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #8e44ad"
+        data-color="#8e44ad"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #f1c40f"
+        data-color="#f1c40f"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #e74c3c"
+        data-color="#e74c3c"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #95a5a6"
+        data-color="#95a5a6"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #d35400"
+        data-color="#d35400"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #bdc3c7"
+        data-color="#bdc3c7"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #2ecc71"
+        data-color="#2ecc71"
+      ></div>
+      <div
+        class="color-option"
+        style="background-color: #e67e22"
+        data-color="#e67e22"
+      ></div>
+    </section>
     <script src="app.js"></script>
+    <script
+      src="https://kit.fontawesome.com/05fc0c404b.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

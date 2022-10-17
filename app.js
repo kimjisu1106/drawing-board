@@ -1,3 +1,4 @@
+const saveBtn = document.getElementById("save");
 const textInput = document.getElementById("text");
 const fileInput = document.getElementById("file");
 const eraseBtn = document.getElementById("eraser-btn");
@@ -13,6 +14,8 @@ const color = document.getElementById("color");
 const ctx = canvas.getContext("2d");
 const CANVAS_WIDTH = "800";
 const CANVAS_HEIGHT = "800";
+const HIDDEN_CLASSNAME = "hidden";
+
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 ctx.lineCap = "round";
@@ -41,7 +44,11 @@ function cancelPainting(event) {
 }
 
 function onLineWidthChange(event) {
-  ctx.lineWidth = event.target.value;
+  if (isFilling) {
+    lineWidth.value = 1;
+  } else {
+    ctx.lineWidth = event.target.value;
+  }
 }
 
 function onColorChange(event) {
@@ -62,18 +69,29 @@ function chageColor(color) {
   }
 }
 
+function onButton() {
+  if (isFilling) {
+    drawBtn.style.color = "inherit";
+    fillBtn.style.color = "white";
+    fillBtn.style.textShadow = "1px 1px 5px gray";
+    lineWidth.classList.add(HIDDEN_CLASSNAME);
+  } else {
+    drawBtn.style.color = "white";
+    drawBtn.style.textShadow = "1px 1px 5px gray";
+    fillBtn.style.color = "inherit";
+    lineWidth.classList.remove(HIDDEN_CLASSNAME);
+  }
+}
+
 function onDrawClick() {
   isFilling = false;
-  drawBtn.classList.add("on-btn");
-  fillBtn.classList.remove("on-btn");
-  eraseBtn.classList.remove("on-btn");
+
+  onButton();
 }
 
 function onFillClick() {
   isFilling = true;
-  drawBtn.classList.remove("on-btn");
-  fillBtn.classList.add("on-btn");
-  eraseBtn.classList.remove("on-btn");
+  onButton();
 }
 
 function onCanvasClick() {
@@ -86,9 +104,7 @@ function onCanvasClick() {
 function onDestoryClick() {
   canvas.width = CANVAS_WIDTH;
   ctx.fillStyle = "white";
-  drawBtn.classList.add("on-btn");
-  fillBtn.classList.remove("on-btn");
-  eraseBtn.classList.remove("on-btn");
+  onButton();
   lineWidth.value = "1";
   ctx.lineCap = "round";
 }
@@ -96,9 +112,7 @@ function onDestoryClick() {
 function onElaseClick() {
   ctx.strokeStyle = ctx.fillStyle;
   isFilling = false;
-  drawBtn.classList.remove("on-btn");
-  fillBtn.classList.remove("on-btn");
-  eraseBtn.classList.add("on-btn");
+  onButton();
 }
 
 function onFileChange(event) {
@@ -117,11 +131,24 @@ function onDoubleClick(event) {
   if (text !== "") {
     ctx.save();
     ctx.lineWidth = 1;
-    ctx.font = "68px serif";
+    ctx.font = "68px sans-serif";
     ctx.fillStyle = ctx.strokeStyle;
     ctx.fillText(text, event.offsetX, event.offsetY);
+
     ctx.restore();
   }
+}
+
+function onTextClick() {
+  isFilling = false;
+}
+
+function onSaveClick() {
+  const url = canvas.toDataURL();
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "myDrawing.png";
+  a.click();
 }
 
 canvas.addEventListener("mousemove", onMove);
@@ -140,3 +167,5 @@ fillBtn.addEventListener("click", onFillClick);
 destroyBtn.addEventListener("click", onDestoryClick);
 eraseBtn.addEventListener("click", onElaseClick);
 fileInput.addEventListener("change", onFileChange);
+saveBtn.addEventListener("click", onSaveClick);
+textInput.addEventListener("click", onTextClick);
