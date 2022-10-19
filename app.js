@@ -10,6 +10,7 @@ const colorOptions = Array.from(
 );
 const canvas = document.querySelector("canvas");
 const lineWidth = document.getElementById("line-width");
+const lineWidthValue = document.getElementById("line-width-value");
 const color = document.getElementById("color");
 const ctx = canvas.getContext("2d");
 const CANVAS_WIDTH = "800";
@@ -47,7 +48,9 @@ function onLineWidthChange(event) {
   if (isFilling) {
     lineWidth.value = 1;
   } else {
-    ctx.lineWidth = event.target.value;
+    const width = event.target.value;
+    ctx.lineWidth = width;
+    lineWidthValue.innerText = width;
   }
 }
 
@@ -69,29 +72,38 @@ function chageColor(color) {
   }
 }
 
-function onButton() {
-  if (isFilling) {
-    drawBtn.style.color = "inherit";
-    fillBtn.style.color = "white";
-    fillBtn.style.textShadow = "1px 1px 5px gray";
-    lineWidth.classList.add(HIDDEN_CLASSNAME);
-  } else {
-    drawBtn.style.color = "white";
-    drawBtn.style.textShadow = "1px 1px 5px gray";
-    fillBtn.style.color = "inherit";
-    lineWidth.classList.remove(HIDDEN_CLASSNAME);
-  }
+function onButton(event) {
+  event.style.color = "white";
+  event.style.textShadow = "1px 1px 5px gray";
+}
+
+function offButton() {
+  drawBtn.style.color = "inherit";
+  drawBtn.style.textShadow = "none";
+  fillBtn.style.color = "inherit";
+  fillBtn.style.textShadow = "none";
+  destroyBtn.style.color = "inherit";
+  destroyBtn.style.textShadow = "none";
+  eraseBtn.style.color = "inherit";
+  eraseBtn.style.textShadow = "none";
+  saveBtn.style.color = "inherit";
+  saveBtn.style.textShadow = "none";
+  lineWidth.classList.add(HIDDEN_CLASSNAME);
+  lineWidthValue.classList.add(HIDDEN_CLASSNAME);
 }
 
 function onDrawClick() {
   isFilling = false;
-
-  onButton();
+  offButton();
+  onButton(drawBtn);
+  lineWidth.classList.remove(HIDDEN_CLASSNAME);
+  lineWidthValue.classList.remove(HIDDEN_CLASSNAME);
 }
 
 function onFillClick() {
   isFilling = true;
-  onButton();
+  offButton();
+  onButton(fillBtn);
 }
 
 function onCanvasClick() {
@@ -104,7 +116,8 @@ function onCanvasClick() {
 function onDestoryClick() {
   canvas.width = CANVAS_WIDTH;
   ctx.fillStyle = "white";
-  onButton();
+  offButton();
+  onButton(destroyBtn);
   lineWidth.value = "1";
   ctx.lineCap = "round";
 }
@@ -112,7 +125,8 @@ function onDestoryClick() {
 function onElaseClick() {
   ctx.strokeStyle = ctx.fillStyle;
   isFilling = false;
-  onButton();
+  offButton();
+  onButton(eraseBtn);
 }
 
 function onFileChange(event) {
@@ -124,6 +138,7 @@ function onFileChange(event) {
     ctx.drawImage(image, 0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
   };
   fileInput.value = null;
+  offButton();
 }
 
 function onDoubleClick(event) {
@@ -141,6 +156,8 @@ function onDoubleClick(event) {
 
 function onTextClick() {
   isFilling = false;
+  offButton();
+  textInput.classList.remove(HIDDEN_CLASSNAME);
 }
 
 function onSaveClick() {

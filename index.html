@@ -9,19 +9,22 @@
   </head>
   <body>
     <section class="tools">
-      <div class="draw-btn">
-        <button id="draw-btn" class="on-btn">
+      <div class="line-width">
+        <div class="line-width-value">
+          <span id="line-width-value" class="hidden">1</span>
+          <input
+            id="line-width"
+            type="range"
+            step="3"
+            value="1"
+            min="1"
+            max="100"
+            class="draw-width hidden"
+          />
+        </div>
+        <label for="line-width" id="draw-btn">
           <i class="fas fa-paint-brush"></i>
-        </button>
-        <input
-          id="line-width"
-          type="range"
-          step="3"
-          value="1"
-          min="1"
-          max="100"
-          class="hidden"
-        />
+        </label>
       </div>
       <button id="fill-btn">
         <i class="fas fa-fill-drip"></i>
@@ -35,26 +38,35 @@
       <button id="save">
         <i class="fas fa-file-download"></i>
       </button>
-      <label for="file">
-        <i class="fas fa-images"></i>
-      </label>
-      <input
-        id="file"
-        name="file"
-        type="file"
-        accept="image/*"
-        style="opacity: 0"
-      />
-      <label for="text">
-        <i class="fas fa-font"></i>
-      </label>
-      <input type="text" placeholder="입력 후 더블클릭!" id="text" />
+      <div>
+        <label for="file">
+          <i class="fas fa-images"></i>
+        </label>
+        <input
+          id="file"
+          name="file"
+          type="file"
+          accept="image/*"
+          class="hidden"
+        />
+      </div>
+      <div class="text-input-btn">
+        <input
+          type="text"
+          placeholder="입력 후 더블클릭!"
+          id="text"
+          class="text-input hidden"
+        />
+        <label for="text" class="text-label">
+          <i class="fas fa-font"></i>
+        </label>
+      </div>
     </section>
     <section>
       <canvas></canvas>
     </section>
     <section class="palette">
-      <input id="color" type="color" />
+      <input id="color" type="color" class="color-option" />
       <div
         class="color-option"
         style="background-color: #1abc9c"

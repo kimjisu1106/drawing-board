@@ -4,7 +4,7 @@ body {
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   overflow: hidden;
   background-color: gainsboro;
@@ -34,28 +34,41 @@ canvas {
   height: 800px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .tools button {
   border: none;
   background-color: inherit;
-  margin-bottom: 50px;
 }
 
 .tools i {
   font-size: 70px;
+  margin: 0px 30px 50px 0px;
 }
 
-.on-btn {
-  background-color: tomato;
-}
-
-.draw-btn {
+.line-width {
   display: flex;
+  position: relative;
+}
+
+.line-width > div {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
-.draw-btn input {
+
+.line-width > div span {
+  margin: 20px 0px;
+}
+
+.line-width-value {
+  position: absolute;
+  left: -110px;
+}
+
+.draw-width {
   -webkit-appearance: none;
   width: 100px;
   height: 5px;
@@ -63,22 +76,37 @@ canvas {
   border-radius: 5px;
 }
 
+.text-input-btn {
+  position: relative;
+}
+.text-input {
+  width: 220px;
+  height: 50px;
+  border: none;
+  background-color: inherit;
+  font-size: 30px;
+  position: absolute;
+  left: -240px;
+}
+
+.text-input::placeholder {
+  font-size: 30px;
+}
+
 /*palette*/
 
 .palette {
+  height: 800px;
   display: flex;
   flex-direction: column;
-}
-
-.palette input {
-  width: 5vw;
-  height: 5vw;
-  margin: 0.5vw;
+  justify-content: space-between;
 }
 
 .color-option {
-  width: 5vw;
-  height: 5vw;
-  margin: 0.5vw;
+  width: 100px;
+  height: 50px;
   cursor: pointer;
+  margin-left: 30px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
