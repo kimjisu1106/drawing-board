@@ -2,6 +2,8 @@ const saveBtn = document.getElementById("save");
 const textInput = document.getElementById("text");
 const fileInput = document.getElementById("file");
 const eraseBtn = document.getElementById("eraser-btn");
+const eraseWidth = document.getElementById("eraser-width");
+const eraseWidthValue = document.getElementById("eraser-width-value");
 const destroyBtn = document.getElementById("destroy-btn");
 const drawBtn = document.getElementById("draw-btn");
 const fillBtn = document.getElementById("fill-btn");
@@ -90,10 +92,14 @@ function offButton() {
   saveBtn.style.textShadow = "none";
   lineWidth.classList.add(HIDDEN_CLASSNAME);
   lineWidthValue.classList.add(HIDDEN_CLASSNAME);
+  eraseWidth.classList.add(HIDDEN_CLASSNAME);
+  eraseWidthValue.classList.add(HIDDEN_CLASSNAME);
 }
 
 function onDrawClick() {
   isFilling = false;
+  ctx.strokeStyle = color.value;
+  ctx.lineWidth = lineWidth.value;
   offButton();
   onButton(drawBtn);
   lineWidth.classList.remove(HIDDEN_CLASSNAME);
@@ -124,9 +130,18 @@ function onDestoryClick() {
 
 function onElaseClick() {
   ctx.strokeStyle = ctx.fillStyle;
+  ctx.lineWidth = eraseWidth.value;
   isFilling = false;
   offButton();
   onButton(eraseBtn);
+  eraseWidth.classList.remove(HIDDEN_CLASSNAME);
+  eraseWidthValue.classList.remove(HIDDEN_CLASSNAME);
+}
+
+function onEraseWidthChange(event) {
+  const eraseWidth = event.target.value;
+  ctx.lineWidth = eraseWidth;
+  eraseWidthValue.innerText = eraseWidth;
 }
 
 function onFileChange(event) {
@@ -177,12 +192,12 @@ canvas.addEventListener("dblclick", onDoubleClick);
 
 lineWidth.addEventListener("change", onLineWidthChange);
 color.addEventListener("change", onColorChange);
-
 colorOptions.forEach((color) => color.addEventListener("click", onColorClick));
 drawBtn.addEventListener("click", onDrawClick);
 fillBtn.addEventListener("click", onFillClick);
 destroyBtn.addEventListener("click", onDestoryClick);
 eraseBtn.addEventListener("click", onElaseClick);
+eraseWidth.addEventListener("change", onEraseWidthChange)
 fileInput.addEventListener("change", onFileChange);
 saveBtn.addEventListener("click", onSaveClick);
 textInput.addEventListener("click", onTextClick);

@@ -32,9 +32,23 @@
       <button id="destroy-btn">
         <i class="fas fa-trash-alt"></i>
       </button>
-      <button id="eraser-btn">
-        <i class="fas fa-eraser"></i>
-      </button>
+      <div class="line-width">
+        <div class="line-width-value">
+          <span id="eraser-width-value" class="hidden">1</span>
+          <input
+            id="eraser-width"
+            type="range"
+            step="3"
+            value="1"
+            min="1"
+            max="100"
+            class="draw-width hidden"
+          />
+        </div>
+        <label for="eraser-width" id="eraser-btn">
+          <i class="fas fa-eraser"></i>
+        </label>
+      </div>
       <button id="save">
         <i class="fas fa-file-download"></i>
       </button>
