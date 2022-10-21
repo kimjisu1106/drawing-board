@@ -28,16 +28,24 @@ canvas {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  margin-right: 30px;
 }
 
 .tools button {
-  border: none;
-  background-color: inherit;
+  all: unset;
 }
 
 .tools i {
   font-size: 70px;
   margin: 0px 30px 50px 0px;
+  transition: transform ease-in-out 0.1s;
+  cursor: pointer;
+}
+
+.tools i:hover {
+  transform: scale(1.2);
+  color: whitesmoke;
+  text-shadow: 1px 1px 5px gray;
 }
 
 .line-width {
@@ -101,4 +109,10 @@ canvas {
   margin-left: 30px;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
+  transition: transform ease-in-out 0.1s;
+  box-shadow: 1px 1px 5px gray;
+}
+
+.color-option:hover {
+  transform: scale(1.2);
 }
