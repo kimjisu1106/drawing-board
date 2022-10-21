@@ -71,9 +71,53 @@
           id="text"
           class="text-input hidden"
         />
-        <label for="text" class="text-label">
+        <label id="text-label" for="text" class="text-label">
           <i class="fas fa-font"></i>
         </label>
+        <div id="text-option">
+          <form>
+            <input
+              type="radio"
+              name="text-font"
+              value="round-font"
+              id="round-font"
+            />
+            <label for="round-font">동글동글</label>
+            <input
+              type="radio"
+              name="text-font"
+              value="brush-font"
+              id="brush-font"
+            />
+            <label for="brush-font">진지하게</label>
+          </form>
+          <form>
+            <input
+              type="radio"
+              name="text-font"
+              value="fill-text"
+              id="fill-text"
+            />
+            <label for="fill-text">채우기</label>
+            <input
+              type="radio"
+              name="text-font"
+              value="stroke-text"
+              id="stroke-text"
+            />
+            <label for="stroke-text">비우기</label>
+          </form>
+          <form>
+            <input
+              id="font-width"
+              type="range"
+              step="3"
+              value="1"
+              min="1"
+              max="100"
+            />
+          </form>
+        </div>
       </div>
     </section>
     <section>

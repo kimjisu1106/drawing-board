@@ -1,5 +1,6 @@
 const saveBtn = document.getElementById("save");
 const textInput = document.getElementById("text");
+const textLabel = document.getElementById("text-label");
 const fileInput = document.getElementById("file");
 const eraseBtn = document.getElementById("eraser-btn");
 const eraseWidth = document.getElementById("eraser-width");
@@ -90,6 +91,9 @@ function offButton() {
   eraseBtn.style.textShadow = "none";
   saveBtn.style.color = "inherit";
   saveBtn.style.textShadow = "none";
+  textLabel.style.color = "inherit";
+  textLabel.style.textShadow = "none";
+  textInput.classList.add(HIDDEN_CLASSNAME);
   lineWidth.classList.add(HIDDEN_CLASSNAME);
   lineWidthValue.classList.add(HIDDEN_CLASSNAME);
   eraseWidth.classList.add(HIDDEN_CLASSNAME);
@@ -171,6 +175,7 @@ function onDoubleClick(event) {
 
 function onTextClick() {
   isFilling = false;
+  onButton(textLabel);
   offButton();
   textInput.classList.remove(HIDDEN_CLASSNAME);
 }
