@@ -33,6 +33,8 @@ ctx.lineWidth = lineWidth.value;
 let isPainting = false;
 let isFilling = false;
 let isTexting = false;
+let isFontFill = true;
+let isFontStroke = false;
 
 function onMove(event) {
   if (isPainting) {
@@ -180,10 +182,12 @@ function onDoubleClick(event) {
   if (text !== "") {
     ctx.save();
     ctx.lineWidth = 1;
-    /* fontStyle == stroke => ctx.strokeText
-                 == fill => ctx.fillText */
     ctx.fillStyle = ctx.strokeStyle;
-    ctx.strokeText(text, event.offsetX, event.offsetY);
+    if (isFontStroke) {
+      ctx.strokeText(text, event.offsetX, event.offsetY);
+    } else if(isFontFill) {
+      ctx.fillText(text,event.offsetX, event.offsetY);
+    }
     ctx.restore();
   }
 }
@@ -202,11 +206,16 @@ function onFontSizeChange(event) {
   textSizeValue.innerText = fontSize;
 }
 
-function onclickFontStyle(event) {
+function onClickFontStyle(event) {
   const fontStyle = event.target.value;
-  return fontStyle;
+  if (fontStyle === "stroke") {
+    isFontStroke = true;
+    isFontFill = false;
+  } else {
+    isFontFill = true;
+    isFontStroke = false;
+  }
 }
-
 
 function onSaveClick() {
   const url = canvas.toDataURL();
@@ -235,4 +244,4 @@ fileInput.addEventListener("change", onFileChange);
 saveBtn.addEventListener("click", onSaveClick);
 textInput.addEventListener("click", onTextClick);
 fontSize.addEventListener("change",onFontSizeChange);
-textStyle.addEventListener("click",onclickFontStyle);
+textStyle.addEventListener("click",onClickFontStyle);
