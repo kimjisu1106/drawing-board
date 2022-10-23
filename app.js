@@ -1,6 +1,10 @@
 const saveBtn = document.getElementById("save");
 const textInput = document.getElementById("text");
 const textLabel = document.getElementById("text-label");
+const textOption = document.getElementById("text-option")
+const textStyle = document.getElementById("text-style");
+const fontSize = document.getElementById("font-size");
+const textSizeValue = document.getElementById("text-size-value");
 const fileInput = document.getElementById("file");
 const eraseBtn = document.getElementById("eraser-btn");
 const eraseWidth = document.getElementById("eraser-width");
@@ -28,6 +32,7 @@ ctx.lineWidth = lineWidth.value;
 
 let isPainting = false;
 let isFilling = false;
+let isTexting = false;
 
 function onMove(event) {
   if (isPainting) {
@@ -39,7 +44,10 @@ function onMove(event) {
 }
 
 function startPainting(event) {
+  if (isTexting) {
+  } else {
   isPainting = true;
+  }
 }
 
 function cancelPainting(event) {
@@ -94,14 +102,17 @@ function offButton() {
   textLabel.style.color = "inherit";
   textLabel.style.textShadow = "none";
   textInput.classList.add(HIDDEN_CLASSNAME);
+  textOption.classList.add(HIDDEN_CLASSNAME);
   lineWidth.classList.add(HIDDEN_CLASSNAME);
   lineWidthValue.classList.add(HIDDEN_CLASSNAME);
   eraseWidth.classList.add(HIDDEN_CLASSNAME);
   eraseWidthValue.classList.add(HIDDEN_CLASSNAME);
+  
 }
 
 function onDrawClick() {
   isFilling = false;
+  isTexting = false;
   ctx.strokeStyle = color.value;
   ctx.lineWidth = lineWidth.value;
   offButton();
@@ -112,6 +123,7 @@ function onDrawClick() {
 
 function onFillClick() {
   isFilling = true;
+  isTexting = false;
   offButton();
   onButton(fillBtn);
 }
@@ -130,6 +142,8 @@ function onDestoryClick() {
   onButton(destroyBtn);
   lineWidth.value = "1";
   lineWidthValue.innerText = "1";
+  fontSize.value = "1";
+  fontSizeValue.innerText = "1";
   ctx.lineCap = "round";
 }
 
@@ -166,20 +180,33 @@ function onDoubleClick(event) {
   if (text !== "") {
     ctx.save();
     ctx.lineWidth = 1;
-    ctx.font = "68px sans-serif";
+    /* fontStyle == stroke => ctx.strokeText
+                 == fill => ctx.fillText */
     ctx.fillStyle = ctx.strokeStyle;
-    ctx.fillText(text, event.offsetX, event.offsetY);
-
+    ctx.strokeText(text, event.offsetX, event.offsetY);
     ctx.restore();
   }
 }
 
 function onTextClick() {
-  isFilling = false;
-  onButton(textLabel);
+  isTexting = true;
   offButton();
+  onButton(textLabel);
   textInput.classList.remove(HIDDEN_CLASSNAME);
+  textOption.classList.remove(HIDDEN_CLASSNAME);
 }
+
+function onFontSizeChange(event) {
+  const fontSize = event.target.value;
+  ctx.font = `${fontSize}px sans-serif`;
+  textSizeValue.innerText = fontSize;
+}
+
+function onclickFontStyle(event) {
+  const fontStyle = event.target.value;
+  return fontStyle;
+}
+
 
 function onSaveClick() {
   const url = canvas.toDataURL();
@@ -207,3 +234,5 @@ eraseWidth.addEventListener("change", onEraseWidthChange)
 fileInput.addEventListener("change", onFileChange);
 saveBtn.addEventListener("click", onSaveClick);
 textInput.addEventListener("click", onTextClick);
+fontSize.addEventListener("change",onFontSizeChange);
+textStyle.addEventListener("click",onclickFontStyle);

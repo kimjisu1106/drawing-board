@@ -74,15 +74,16 @@
         <label id="text-label" for="text" class="text-label">
           <i class="fas fa-font"></i>
         </label>
-        <div class="text-option">
-          <div>
-            <span>Font</span>
-            <div>
+        <div id="text-option" class="text-option hidden">
+          <div class="text-option__section">
+            <span>폰트</span>
+            <form id="text-font">
               <input
                 type="radio"
                 name="text-font"
                 value="round-font"
                 id="round-font"
+                checked
               />
               <label for="round-font">동글동글</label>
               <input
@@ -92,33 +93,39 @@
                 id="brush-font"
               />
               <label for="brush-font">진지하게</label>
-            </div>
+            </form>
           </div>
-          <div>
-            <input
-              type="radio"
-              name="text-font"
-              value="fill-text"
-              id="fill-text"
-            />
-            <label for="fill-text">채우기</label>
-            <input
-              type="radio"
-              name="text-font"
-              value="stroke-text"
-              id="stroke-text"
-            />
-            <label for="stroke-text">비우기</label>
+          <div class="text-option__section">
+            <span>스타일</span>
+            <form id="text-style">
+              <input
+                type="radio"
+                name="text-font"
+                value="fill"
+                id="fill-text"
+                checked
+              />
+              <label for="fill-text">채우기</label>
+              <input
+                type="radio"
+                name="text-font"
+                value="stroke"
+                id="stroke-text"
+              />
+              <label for="stroke-text">비우기</label>
+            </form>
           </div>
-          <div>
+          <div class="text-option__section">
+            <span>크기</span>
             <input
-              id="font-width"
+              id="font-size"
               type="range"
-              step="3"
+              step="10"
               value="1"
               min="1"
-              max="100"
+              max="500"
             />
+            <span id="text-size-value">1</span>
           </div>
         </div>
       </div>

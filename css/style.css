@@ -99,7 +99,18 @@ canvas {
   padding: 10px;
   position: absolute;
   top: -200px;
-  left: -250px;
+  left: -300px;
+}
+
+.text-option__section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.text-option__section > span {
+  width: 50px;
+  margin-right: 10px;
 }
 
 /*palette*/
