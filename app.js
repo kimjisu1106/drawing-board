@@ -145,8 +145,10 @@ function onDestoryClick() {
   lineWidth.value = "1";
   lineWidthValue.innerText = "1";
   fontSize.value = "1";
-  fontSizeValue.innerText = "1";
+  textSizeValue.innerText = "1";
+  textInput.value = "";
   ctx.lineCap = "round";
+  textStyle.value = "fill";
   isFontFill = true;
   isFontStroke = false;
 }
