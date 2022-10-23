@@ -147,6 +147,8 @@ function onDestoryClick() {
   fontSize.value = "1";
   fontSizeValue.innerText = "1";
   ctx.lineCap = "round";
+  isFontFill = true;
+  isFontStroke = false;
 }
 
 function onElaseClick() {
