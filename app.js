@@ -129,6 +129,7 @@ function onDestoryClick() {
   offButton();
   onButton(destroyBtn);
   lineWidth.value = "1";
+  lineWidthValue.innerText = "1";
   ctx.lineCap = "round";
 }
 
